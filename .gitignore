@@ -1,0 +1,24 @@
+# Ignore compiled files
+*.o
+*.so
+*.ko
+*.obj
+*.elf
+
+# Ignore logs
+*.log
+
+# Ignore dependencies
+/node_modules
+/vendor
+
+# Ignore IDE specific files
+*.swp
+*.swo
+*.swn
+*.idea/
+*.vscode/
+.DS_Store
+
+*.pyc
+__pycache__/
