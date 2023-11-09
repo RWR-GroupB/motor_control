@@ -21,7 +21,7 @@ def tendonlength_flexor_joint1(theta_joint1):
 def tendonlength_extensor_joint1(theta_joint1):
    '''Input: joint angle of joint1 in rad
       Output: total normal lengths of extensor tendon through joint1'''
-   return - ratio_MCP * tendonlength_flexor_joint1(theta_joint1)
+   return ratio_MCP * tendonlength_flexor_joint1(theta_joint1)
 
 def tendonlength_flexor_joint2(theta_joint2):
    '''Input: joint angle of joint2 in rad
@@ -32,7 +32,7 @@ def tendonlength_flexor_joint2(theta_joint2):
 def tendonlength_extensor_joint2(theta_joint2):
    '''Input: joint angle of joint2 in rad
       Output: total normal lengths of extensor tendon through joint2'''
-   return - ratio_PIP * tendonlength_flexor_joint2(theta_joint2)
+   return ratio_PIP * tendonlength_flexor_joint2(theta_joint2)
 
 # ------------------- Calculations of Tendon Lengths for all joints ------------------- #
 # calculate the tendon lengths for all joints for each finger (if needed)
@@ -45,9 +45,6 @@ def pose2tendon_finger(theta_Joint1, theta_Joint2):
             tendonlength_extensor_joint1(theta_Joint1),
             tendonlength_flexor_joint2(theta_Joint2), 
             tendonlength_extensor_joint2(theta_Joint2)]
-
-
-
 
 
 

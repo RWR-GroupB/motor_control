@@ -57,7 +57,7 @@ class GripperController:
         self.disconnect_from_dynamixels()
         
 
-    def _load_musclegroup_yaml(self, filename):
+    def _load_musclegroup_yaml(self, filename): 
         """
         load muscle group definitions from a yaml file
         Assumed to only run once, i.e. muscle groups are not changed during runtime
@@ -198,22 +198,15 @@ class GripperController:
         tendon_lengths = np.zeros(len(self.tendon_ids))
         j_idx = 0
         t_idx = 0
-        for muscle_group in self.muscle_groups:
+        for muscle_group in self.muscle_groups: #e.g. choose finger 1
             t_nr = len(muscle_group.tendon_ids)
             j_nr = len(muscle_group.joint_ids)
-            if muscle_group.name == "finger1":
-                tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_finger1(joint_angles[j_idx],joint_angles[j_idx+1])
-            elif muscle_group.name == "finger2":
-                pass # tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_finger2(joint_angles[j_idx],joint_angles[j_idx+1])
-
-            # TODO: Extend the calculations here for your own fingers:
-
-
-
-
+            
+            tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_finger(joint_angles[j_idx],joint_angles[j_idx+1])
 
             j_idx += j_nr
             t_idx += t_nr
+
         return self.tendon_pos2motor_pos(tendon_lengths)
 
     def init_joints(self, calibrate: bool = False, maxCurrent: int = 150):
@@ -247,7 +240,6 @@ class GripperController:
             input("Move fingers to init posiiton and press Enter to continue...")
             
             # TODO: Add your own calibration procedure here, that move the motors to a defined initial position:
-
 
 
 
