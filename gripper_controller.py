@@ -269,6 +269,7 @@ class GripperController:
         :param: joint_angles: [joint 1 angle, joint 2 angle, ...]
         """
         motor_pos_des = self.pose2motors(np.deg2rad(joint_angles)) - self.motor_pos_norm + self.motor_id2init_pos
+        print('motor position (degrees):', motor_pos_des)
         self.write_desired_motor_pos(motor_pos_des)
         time.sleep(0.01) # wait for the command to be sent
 

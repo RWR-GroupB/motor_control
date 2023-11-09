@@ -14,24 +14,27 @@ def tendonlength_flexor_joint1(theta_joint1):
    '''Input: joint angle of joint1 in rad
       Output: total normal lengths of flexor tendon through joint1
       Kinematic calculations provided by Shubham'''
-   
+   theta_joint1 = theta_joint1/2
    l1 = R_MCP*(np.sqrt(6 - 8*np.sin(theta_joint1) - 2*np.cos(2*theta_joint1)) - 2) #normalized: 0 at 0 degrees joint angle (coincides with 0 degrees of the motor angle)
    return l1
 
 def tendonlength_extensor_joint1(theta_joint1):
    '''Input: joint angle of joint1 in rad
       Output: total normal lengths of extensor tendon through joint1'''
+   theta_joint1 = theta_joint1/2
    return ratio_MCP * tendonlength_flexor_joint1(theta_joint1)
 
 def tendonlength_flexor_joint2(theta_joint2):
    '''Input: joint angle of joint2 in rad
       Output: total normal lengths of flexor tendon through joint2'''
+   theta_joint2 = theta_joint2/2
    l2 = R_MCP*(np.sqrt(6 - 8*np.sin(theta_joint2) - 2*np.cos(2*theta_joint2)) - 2)
    return l2
 
 def tendonlength_extensor_joint2(theta_joint2):
    '''Input: joint angle of joint2 in rad
       Output: total normal lengths of extensor tendon through joint2'''
+   theta_joint2 = theta_joint2/2
    return ratio_PIP * tendonlength_flexor_joint2(theta_joint2)
 
 # ------------------- Calculations of Tendon Lengths for all joints ------------------- #
