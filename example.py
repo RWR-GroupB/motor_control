@@ -12,7 +12,9 @@ goalpos = [50, 80]
 
 def main():
     global gc
-    gc = GripperController(port="/dev/tty.usbserial-FT89F9JC",calibration=False)
+    port_mac = "/dev/tty.usbserial-FT89F9JC"
+    port_linux = "/dev/ttyUSB0"
+    gc = GripperController(port=port_linux,calibration=False)
 
     gc.write_desired_joint_angles(goalpos)
 
