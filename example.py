@@ -7,7 +7,7 @@ Example script to control the finger joint angles
 """
 
 homepos = [0, 0]
-goalpos = [50, 80]
+goalpos = [40, 40]
 
 
 def main():
@@ -22,11 +22,11 @@ def main():
 
     time.sleep(1)
 
-    gc.write_desired_joint_angles(homepos)
+    # gc.write_desired_joint_angles(homepos)
 
-    gc.wait_for_motion()
+    # gc.wait_for_motion()
 
-    time.sleep(1)
+    # time.sleep(1)
 
     gc.terminate()
 
