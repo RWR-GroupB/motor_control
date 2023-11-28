@@ -6,27 +6,27 @@ import time
 Example script to control the finger joint angles
 """
 
-homepos = [0, 0]
-goalpos = [40, 40]
+homepos = [0, 0, 0, 0, 0, 0]
+goalpos = [45, 45, 45, 45, 45, 45]
 
 
 def main():
     global gc
     port_mac = "/dev/tty.usbserial-FT89F9JC"
     port_linux = "/dev/ttyUSB0"
-    gc = GripperController(port=port_linux,calibration=False)
+    gc = GripperController(port=port_linux,calibration=True)
 
-    gc.write_desired_joint_angles(goalpos)
-
+    gc.write_desired_joint_angles(homepos)
     gc.wait_for_motion()
-
     time.sleep(1)
 
-    # gc.write_desired_joint_angles(homepos)
+    gc.write_desired_joint_angles(goalpos)
+    gc.wait_for_motion()
+    time.sleep(1)
 
-    # gc.wait_for_motion()
-
-    # time.sleep(1)
+    gc.write_desired_joint_angles(homepos)
+    gc.wait_for_motion()
+    time.sleep(1)
 
     gc.terminate()
 
