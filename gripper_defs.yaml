@@ -1,17 +1,39 @@
 muscle_groups:
-  finger1:
-    joint_ids: [0, 1]           # ids for each controllable joint from proximal to distal
-    tendon_ids: [0, 1, 2, 3]    # ids for each tendon according to joints, first flexor then extensor, from proximal to distal
-    motor_ids: [9, 7]           # ids of motors for this muscle group, 2 is MCP, 3 is PIP
-    motor_map: [9, 9, 7, 7]     # maps each tendon to a certain motor. antagonistic tendons have same motor id in motor_map
-    spool_rad: [-8.5, 5.95, -8.5, 4.25]   # defines spool radius and wind direction for each tendon. 
-                                # wind direction is positive, if tendon attaches on the right side of the spool (from the front of the motor)
+  # finger1:
+  #   joint_ids: [0, 1]           # ids for each controllable joint from proximal to distal
+  #   tendon_ids: [0, 1, 2, 3]    # ids for each tendon according to joints, first flexor then extensor, from proximal to distal
+  #   motor_ids: [9, 7]           # ids of motors for this muscle group, 2 is MCP, 3 is PIP
+  #   motor_map: [9, 9, 7, 7]     # maps each tendon to a certain motor. antagonistic tendons have same motor id in motor_map
+  #   spool_rad: [-8.5, 5.95, -8.5, 4.25]   # defines spool radius and wind direction for each tendon. 
+  #                               # wind direction is positive, if tendon attaches on the right side of the spool (from the front of the motor)
   
-  
-  
-  # finger2:
+  # Official mapping for finger control 
+  # thumb:
   #   joint_ids: [2, 3, 4]
   #   tendon_ids: [4, 5, 6, 7, 8, 9]
   #   motor_ids: [3, 4, 5]
   #   motor_map: [4, 3, 3, 4, 5, 5]
   #   spool_rad: [-5, -5, 5, 5, -5, 5]
+  
+  index:
+    joint_ids: [0, 1]           # ids for each controllable joint from proximal to distal
+    tendon_ids: [0, 1, 2, 3]    # ids for each tendon according to joints, first flexor then extensor, from proximal to distal
+    motor_ids: [5, 2]           # ids of motors for this muscle group, 2 is MCP, 3 is PIP
+    motor_map: [5, 5, 2, 2]     # maps each tendon to a certain motor. antagonistic tendons have same motor id in motor_map
+    spool_rad: [8.5, -5.95, 8.5, -4.25]   # defines spool radius and wind direction for each tendon. 
+                                # wind direction is positive, if tendon attaches on the right side of the spool (from the front of the motor)
+
+  middle:
+    joint_ids: [2, 3]           # ids for each controllable joint from proximal to distal
+    tendon_ids: [4, 5, 6, 7]    # ids for each tendon according to joints, first flexor then extensor, from proximal to distal
+    motor_ids: [4, 3]           # ids of motors for this muscle group, 2 is MCP, 3 is PIP
+    motor_map: [4, 4, 3, 3]     # maps each tendon to a certain motor. antagonistic tendons have same motor id in motor_map
+    spool_rad: [8.5, -5.95, 8.5, -4.25]   # defines spool radius and wind direction for each tendon. 
+                                # wind direction is positive, if tendon attaches on the right side of the spool (from the front of the motor)
+
+  pinky:
+    joint_ids: [4, 5]
+    tendon_ids: [8, 9, 10, 11]
+    motor_ids: [10, 1]
+    motor_map: [10, 10, 1, 1]
+    spool_rad: [8.5, -5.95, 8.5, -4.25]
