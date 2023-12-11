@@ -1,10 +1,10 @@
 from re import L
-from dynamixel_client import *
+from .dynamixel_client import *
 import numpy as np
 import time
 import yaml
 import os
-import finger_kinematics as fk
+from . import finger_kinematics as fk
 from threading import RLock
 
 
@@ -28,7 +28,7 @@ class GripperController:
     Signs for the tendon length is modified before sending to the robot so for the user, it is always [positive] = [actual tendon length increases]
     The direction of each tendon is set by the sign of the `spool_rad` variable in each muscle group
     """
-    def __init__(self, port: str = '/dev/ttyUSB0', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 150):
+    def __init__(self, port: str = '/dev/ttyUSB0', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 200):
         """
         config_yml: path to the config file, relative to this source file
         """
@@ -198,11 +198,23 @@ class GripperController:
         tendon_lengths = np.zeros(len(self.tendon_ids))
         j_idx = 0
         t_idx = 0
+
+        # print("****")
+        # print(self.muscle_groups)
+        # print("****")
+
         for muscle_group in self.muscle_groups: #e.g. choose finger 1
             t_nr = len(muscle_group.tendon_ids)
             j_nr = len(muscle_group.joint_ids)
-            
-            tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_finger(joint_angles[j_idx],joint_angles[j_idx+1])
+        
+            # print("-------")
+            # print(j_nr)
+            # print("-------")
+
+            if j_nr == 3:   # This is the thumb 
+                tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_thumb(joint_angles[j_idx],joint_angles[j_idx+1], joint_angles[j_idx+2])
+            else:   # These are the other fingers 
+                tendon_lengths[t_idx:t_idx+t_nr] = fk.pose2tendon_finger(joint_angles[j_idx],joint_angles[j_idx+1])
 
             j_idx += j_nr
             t_idx += t_nr
@@ -261,6 +273,9 @@ class GripperController:
             with open(cal_yaml_fname, 'w') as cal_file:
                 yaml.dump(cal_orig, cal_file, default_flow_style=False)
 
+        # print("****")
+        # print(len(self.joint_ids))
+        # print("****")
         self.motor_pos_norm = self.pose2motors(np.zeros(len(self.joint_ids)))
 
     def write_desired_joint_angles(self, joint_angles: np.array):

@@ -7,8 +7,29 @@ R_PIP = 6 # mm
 # Spool radia radius (ext/flex)
 ratio_MCP = 1/0.7
 ratio_PIP = 1.8
+thumb_adab_spool_radius = 7  # [,m]
 
 # ------------------- Calculations of Tendon Lengths at single joint ------------------- #
+
+def tendonlength_adduction_joint1(theta_joint_1):
+   '''
+   Params:
+      theta_joint_1: joint angle of joint 1 [radians]
+   
+   Output:
+      Total normal lengths of adduction tendon through joint1
+   '''
+   return theta_joint_1*thumb_adab_spool_radius
+
+def tendonlength_abduction_joint1(theta_joint_1):
+   '''
+   Params:
+      theta_joint_1: joint angle of joint 1 [radians]
+   
+   Output:
+      Total normal lengths of adduction tendon through joint1
+   '''
+   return -1 * theta_joint_1*thumb_adab_spool_radius
 
 def tendonlength_flexor_joint1(theta_joint1):
    '''Input: joint angle of joint1 in rad
@@ -48,6 +69,19 @@ def pose2tendon_finger(theta_Joint1, theta_Joint2):
             tendonlength_extensor_joint1(theta_Joint1),
             tendonlength_flexor_joint2(theta_Joint2), 
             tendonlength_extensor_joint2(theta_Joint2)]
+
+def pose2tendon_thumb(theta_joint_1, theta_joint_2, theta_joint_3):
+   '''Input: controllable joint angles
+      Output: array of tendon lengths for given joint angles'''
+   return [
+      tendonlength_adduction_joint1(theta_joint_1),
+      tendonlength_abduction_joint1(theta_joint_1),
+      tendonlength_flexor_joint1(theta_joint_2),
+      tendonlength_extensor_joint1(theta_joint_2),
+      tendonlength_flexor_joint2(theta_joint_3), 
+      tendonlength_extensor_joint2(theta_joint_3),
+   ]
+
 
 
 
