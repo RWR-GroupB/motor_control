@@ -5,8 +5,8 @@ R_MCP = 8 # mm
 R_PIP = 6 # mm
 
 # Spool radia radius (ext/flex)
-ratio_MCP = 1/0.7
-ratio_PIP = 1.8
+ratio_MCP = 1
+ratio_PIP = 1.2
 thumb_adab_spool_radius = 7  # [,m]
 
 # ------------------- Calculations of Tendon Lengths at single joint ------------------- #
