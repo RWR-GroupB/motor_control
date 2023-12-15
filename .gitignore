@@ -22,3 +22,4 @@
 
 *.pyc
 __pycache__/
+cal.yaml
