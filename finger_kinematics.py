@@ -6,7 +6,7 @@ R_PIP = 6 # mm
 
 # Spool radia radius (ext/flex)
 ratio_MCP = 1
-ratio_PIP = 1.2
+ratio_PIP = 1.1
 thumb_adab_spool_radius = 7  # [,m]
 
 # ------------------- Calculations of Tendon Lengths at single joint ------------------- #
@@ -48,7 +48,7 @@ def tendonlength_extensor_joint1(theta_joint1):
 def tendonlength_flexor_joint2(theta_joint2):
    '''Input: joint angle of joint2 in rad
       Output: total normal lengths of flexor tendon through joint2'''
-   theta_joint2 = 2*theta_joint2
+   theta_joint2 = theta_joint2
    l2 = R_PIP*(np.sqrt(6 - 8*np.sin(theta_joint2) - 2*np.cos(2*theta_joint2)) - 2)
    return l2
 

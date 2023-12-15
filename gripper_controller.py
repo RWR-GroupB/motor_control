@@ -28,7 +28,7 @@ class GripperController:
     Signs for the tendon length is modified before sending to the robot so for the user, it is always [positive] = [actual tendon length increases]
     The direction of each tendon is set by the sign of the `spool_rad` variable in each muscle group
     """
-    def __init__(self, port: str = '/dev/ttyUSB0', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 200):
+    def __init__(self, port: str = '/dev/ttyUSB0', config_yml: str = "gripper_defs.yaml", calibration: bool = False, maxCurrent: int = 100):
         """
         config_yml: path to the config file, relative to this source file
         """
@@ -221,7 +221,7 @@ class GripperController:
 
         return self.tendon_pos2motor_pos(tendon_lengths)
 
-    def init_joints(self, calibrate: bool = False, maxCurrent: int = 150):
+    def init_joints(self, calibrate: bool = False, maxCurrent: int = 100):
         """
         Set the offsets based on the current (initial) motor positions
         :param calibrate: if True, perform calibration and set the offsets else move to the initial position
